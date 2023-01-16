@@ -3,3 +3,5 @@ sharedPreferences = this.getSharedPreferences("com.omersungur.verisaklama_shared
 sharedPreferences.edit().putInt("storedAge",userAge).apply() --- veriyi sakladık.
 
 var storedAge = sharedPreferences.getInt("storedAge",0) --- saklanan veriyi aldık.
+
+sharedPreferences.edit().remove("storedAge").apply() --- saklanan veri varsa veri tabanından sildik.
