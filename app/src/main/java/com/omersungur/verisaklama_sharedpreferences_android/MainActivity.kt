@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var editText : EditText
@@ -25,15 +23,13 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById(R.id.textView)
 
         var storedAge = sharedPreferences.getInt("storedAge",0)
-        if(storedAge != null) {
+        if(storedAge == 0)
+            textView.text = "Your Age: "
+        else {
             textView.text = "Your Age: " + storedAge
         }
 
-
-
-
     }
-
     fun save (view : View) {
 
         val age = editText.text.toString()
@@ -54,7 +50,16 @@ class MainActivity : AppCompatActivity() {
         val userAge : Int = Integer.parseInt(editText.text.toString())
 
         sharedPreferences.edit().putInt("storedAge",userAge).apply()
+    }
 
+    fun delete (view: View) {
+
+        var storedData = sharedPreferences.getInt("storedAge",0)
+
+        //sharedPreferences.edit().clear().apply(); her şeyi siler.
+        if(storedData != 0)
+        sharedPreferences.edit().remove("storedAge").apply()
+        textView.text = "Your Age: "
     }
 }
 
